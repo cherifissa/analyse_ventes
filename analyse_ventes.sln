@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.34601.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "analyse_ventes", "analyse_ventes\analyse_ventes.dtproj", "{DCA80CAB-B001-43FE-A343-6A4FCDC08932}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCA80CAB-B001-43FE-A343-6A4FCDC08932}.Development|Default.ActiveCfg = Development
+		{DCA80CAB-B001-43FE-A343-6A4FCDC08932}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E9B762F1-4948-4C8E-8B21-108A6C1A93A7}
+	EndGlobalSection
+EndGlobal
