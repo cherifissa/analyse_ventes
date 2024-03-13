@@ -6,13 +6,14 @@
   DTS:CreatorComputerName="MCHERIF"
   DTS:CreatorName="MCHERIF\cheri"
   DTS:DTSID="{4081E065-3ADD-4A92-9D56-841799F754BD}"
+  DTS:EnableConfig="True"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="16.0.5270.0"
   DTS:LocaleID="1036"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="41"
-  DTS:VersionGUID="{005D3153-5FE7-4319-9D63-324CE22484EF}">
+  DTS:VersionBuild="47"
+  DTS:VersionGUID="{51D1A44F-F697-4A8D-8E57-C5BD78D97915}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -65,6 +66,16 @@
       DTS:CreationName="ADO.NET:System.Data.OleDb.OleDbConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
       DTS:DTSID="{E468358C-D2BF-4AD5-A25A-92CBC802E275}"
       DTS:ObjectName="MCHERIF.Ventes_datamart1 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=MCHERIF;Initial Catalog=Ventes_datamart;Provider=SQLOLEDB.1;Integrated Security=SSPI;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[MCHERIF.Ventes_datamart1 2]"
+      DTS:CreationName="ADO.NET:System.Data.OleDb.OleDbConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{B4E605E2-B47D-4726-8F66-A8C57C731443}"
+      DTS:ObjectName="MCHERIF.Ventes_datamart1 2">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectionString="Data Source=MCHERIF;Initial Catalog=Ventes_datamart;Provider=SQLOLEDB.1;Integrated Security=SSPI;" />
@@ -970,7 +981,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="TRUNCATE_DIM_CL"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -1853,7 +1864,7 @@ GROUP BY Code_Fournisseur, Nom_Fournisseur</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="TST_TRUNCATE_DIM_PR"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -1872,6 +1883,927 @@ GROUP BY Code_Fournisseur, Nom_Fournisseur</property>
           DTS:LogicalAnd="True"
           DTS:ObjectName="Contrainte"
           DTS:To="Package\Seq-dimProduit\TST_PRODUIT" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Seq-dimPromotion"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Conteneur de séquences"
+      DTS:DTSID="{14f64e2d-d7b8-4734-82ff-b22b71d5d549}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Seq-dimPromotion">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Seq-dimPromotion\TST_FOURNISSEUR"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Tâche de flux de données"
+          DTS:DTSID="{d17c011f-80e1-45e3-be1e-0060568ba944}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="TST_FOURNISSEUR"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Seq-dimPromotion\TST_FOURNISSEUR\Destination ADO NET"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="Charge des données dans une base de données compatible ADO.NET qui utilise une vue ou une table de base de données. Chargez les données dans une table nouvelle ou existante. Par exemple, utilisez un fournisseur ADO.NET pour ODBC pour charger des données dans une destination ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;2"
+                  description="Charge des données dans une base de données compatible ADO.NET qui utilise une vue ou une table de base de données. Chargez les données dans une table nouvelle ou existante. Par exemple, utilisez un fournisseur ADO.NET pour ODBC pour charger des données dans une destination ODBC."
+                  name="Destination ADO NET"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Nom de la table de base de données de destination."
+                      expressionType="Notify"
+                      name="TableOrViewName"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">[dim_promotions]</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Spécifiez le nombre de lignes par lot. La taille par défaut, 0, utilise la même taille que la mémoire tampon interne SSIS. "
+                      expressionType="Notify"
+                      name="BatchSize">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Nombre de secondes avant qu'une commande n'expire. Une valeur égale à 0 indique un délai infini. "
+                      expressionType="Notify"
+                      name="CommandTimeout">30</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Spécifie si l'interface SqlBulkCopy doit être utilisée pour améliorer les performances des opérations d'insertion en bloc. Cette interface n'est prise en charge que par certains fournisseurs."
+                      expressionType="Notify"
+                      name="UseBulkInsertWhenPossible">true</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Seq-dimPromotion\TST_FOURNISSEUR\Destination ADO NET.Connections[IDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[MCHERIF.Ventes_datamart1 2]"
+                      connectionManagerRefId="Package.ConnectionManagers[MCHERIF.Ventes_datamart1 2]"
+                      description="Gestionnaire de connexions managées"
+                      name="IDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Seq-dimPromotion\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET]"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Entrée de destination ADO NET">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Seq-dimPromotion\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Code_Promotion]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Code_Promotion"
+                          externalMetadataColumnId="Package\Seq-dimPromotion\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Promotion]"
+                          lineageId="Package\Seq-dimPromotion\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Code_Promotion]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Seq-dimPromotion\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Promotion]"
+                          dataType="wstr"
+                          length="50"
+                          name="Code_Promotion" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Seq-dimPromotion\TST_FOURNISSEUR\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Sortie d'erreur de destination ADO NET"
+                      synchronousInputId="Package\Seq-dimPromotion\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Seq-dimPromotion\TST_FOURNISSEUR\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Seq-dimPromotion\TST_FOURNISSEUR\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Seq-dimPromotion\TST_FOURNISSEUR\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Seq-dimPromotion\TST_FOURNISSEUR\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Seq-dimPromotion\TST_FOURNISSEUR\Source ADO NET"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="Utilise des données issues de SQL Server, OLE DB, ODBC ou Oracle, à l'aide du fournisseur de données .NET Framework correspondant. Utilisez une instruction Transact-SQL pour définir le jeu de résultats. Par exemple, extrayez des données depuis SQL Server à partir du fournisseur de données .NET Framework pour SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+                  description="Utilise des données issues de SQL Server, OLE DB, ODBC ou Oracle, à l'aide du fournisseur de données .NET Framework correspondant. Utilisez une instruction Transact-SQL pour définir le jeu de résultats. Par exemple, extrayez des données depuis SQL Server à partir du fournisseur de données .NET Framework pour SQL Server."
+                  name="Source ADO NET"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Spécifie l'instruction SQL utilisée par le composant pour extraire des données."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT Code_Promotion
+FROM  gs_ventes</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                      name="CommandTimeout">30</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indique si les colonnes externes qui ne sont pas des chaînes peuvent ou non être converties implicitement en chaînes dans les colonnes de sortie."
+                      name="AllowImplicitStringConversion">true</property>
+                    <property
+                      dataType="System.String"
+                      description="Nom de la table de base de données source."
+                      expressionType="Notify"
+                      name="TableOrViewName"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Spécifier le mode de récupération des informations de colonne externe"
+                      name="AccessMode"
+                      typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Seq-dimPromotion\TST_FOURNISSEUR\Source ADO NET.Connections[IDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[MCHERIF.ventes_analysis]"
+                      connectionManagerRefId="Package.ConnectionManagers[MCHERIF.ventes_analysis]"
+                      description="Gestionnaire de connexions managées"
+                      name="IDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Seq-dimPromotion\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET]"
+                      name="Sortie de source ADO NET">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Seq-dimPromotion\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Code_Promotion]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Seq-dimPromotion\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[Code_Promotion]"
+                          length="50"
+                          lineageId="Package\Seq-dimPromotion\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Code_Promotion]"
+                          name="Code_Promotion"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Seq-dimPromotion\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[Code_Promotion]"
+                          dataType="wstr"
+                          length="50"
+                          name="Code_Promotion" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Seq-dimPromotion\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET]"
+                      isErrorOut="true"
+                      name="Sortie d'erreur de source ADO NET">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Seq-dimPromotion\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[Code_Promotion]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Seq-dimPromotion\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[Code_Promotion]"
+                          name="Code_Promotion" />
+                        <outputColumn
+                          refId="Package\Seq-dimPromotion\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Seq-dimPromotion\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Seq-dimPromotion\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Seq-dimPromotion\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Seq-dimPromotion\TST_FOURNISSEUR.Paths[Sortie de source ADO NET]"
+                  endId="Package\Seq-dimPromotion\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET]"
+                  name="Sortie de source ADO NET"
+                  startId="Package\Seq-dimPromotion\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Seq-dimPromotion\TST_TRUNCATE_DIM_FO"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tâche d'exécution de requêtes SQL"
+          DTS:DTSID="{dd52b14d-5a89-412b-b523-8ae039774758}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="TST_TRUNCATE_DIM_FO"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="4">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{4F17A5FF-9FE0-442F-9EC0-72FCAB5054E1}"
+              SQLTask:BypassPrepare="False"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE dim_promotions" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Seq-dimPromotion.PrecedenceConstraints[Contrainte]"
+          DTS:CreationName=""
+          DTS:DTSID="{e3300ed1-4645-4520-be66-5272059c076e}"
+          DTS:From="Package\Seq-dimPromotion\TST_TRUNCATE_DIM_FO"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Contrainte"
+          DTS:To="Package\Seq-dimPromotion\TST_FOURNISSEUR" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Seq-dimVentes"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Conteneur de séquences"
+      DTS:DTSID="{851a7a4b-a264-45ad-88ba-b7701490eeb5}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Seq-dimVentes">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Seq-dimVentes\TST_FOURNISSEUR"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Tâche de flux de données"
+          DTS:DTSID="{c7745121-4eb4-4e55-a537-c0e408359ebb}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="TST_FOURNISSEUR"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="Charge des données dans une base de données compatible ADO.NET qui utilise une vue ou une table de base de données. Chargez les données dans une table nouvelle ou existante. Par exemple, utilisez un fournisseur ADO.NET pour ODBC pour charger des données dans une destination ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;2"
+                  description="Charge des données dans une base de données compatible ADO.NET qui utilise une vue ou une table de base de données. Chargez les données dans une table nouvelle ou existante. Par exemple, utilisez un fournisseur ADO.NET pour ODBC pour charger des données dans une destination ODBC."
+                  name="Destination ADO NET"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Nom de la table de base de données de destination."
+                      expressionType="Notify"
+                      name="TableOrViewName"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">[Fact_ventes]</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Spécifiez le nombre de lignes par lot. La taille par défaut, 0, utilise la même taille que la mémoire tampon interne SSIS. "
+                      expressionType="Notify"
+                      name="BatchSize">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Nombre de secondes avant qu'une commande n'expire. Une valeur égale à 0 indique un délai infini. "
+                      expressionType="Notify"
+                      name="CommandTimeout">30</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Spécifie si l'interface SqlBulkCopy doit être utilisée pour améliorer les performances des opérations d'insertion en bloc. Cette interface n'est prise en charge que par certains fournisseurs."
+                      expressionType="Notify"
+                      name="UseBulkInsertWhenPossible">true</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Connections[IDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[MCHERIF.Ventes_datamart1 2]"
+                      connectionManagerRefId="Package.ConnectionManagers[MCHERIF.Ventes_datamart1 2]"
+                      description="Gestionnaire de connexions managées"
+                      name="IDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET]"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Entrée de destination ADO NET">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Code_Produit]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Code_Produit"
+                          externalMetadataColumnId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Produit]"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Code_Produit]" />
+                        <inputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Description_Produit]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Description_Produit"
+                          externalMetadataColumnId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Description_Produit]"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Description_Produit]" />
+                        <inputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Code_Fournisseur]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Code_Fournisseur"
+                          externalMetadataColumnId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Fournisseur]"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Code_Fournisseur]" />
+                        <inputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Nom_Fournisseur]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Nom_Fournisseur"
+                          externalMetadataColumnId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Nom_Fournisseur]"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Nom_Fournisseur]" />
+                        <inputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Code_Canal_Vente]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Code_Canal_Vente"
+                          externalMetadataColumnId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Canal_Vente]"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Code_Canal_Vente]" />
+                        <inputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Canal_Vente]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Canal_Vente"
+                          externalMetadataColumnId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Canal_Vente]"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Canal_Vente]" />
+                        <inputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Date_Vente]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Date_Vente"
+                          externalMetadataColumnId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Date_Vente]"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Date_Vente]" />
+                        <inputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Code_Client]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Code_Client"
+                          externalMetadataColumnId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Client]"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Code_Client]" />
+                        <inputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Quantite_Vendue]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Quantite_Vendue"
+                          externalMetadataColumnId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Quantite_Vendue]"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Quantite_Vendue]" />
+                        <inputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Date_Inscription_Client]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Date_Inscription_Client"
+                          externalMetadataColumnId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Date_Inscription_Client]"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Date_Inscription_Client]" />
+                        <inputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Code_Pays]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Code_Pays"
+                          externalMetadataColumnId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Pays]"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Code_Pays]" />
+                        <inputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Code_Promotion]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Code_Promotion"
+                          externalMetadataColumnId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Promotion]"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Code_Promotion]" />
+                        <inputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Prix_Unitaire]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Prix_Unitaire"
+                          externalMetadataColumnId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Prix_Unitaire]"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Prix_Unitaire]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Produit]"
+                          dataType="wstr"
+                          length="50"
+                          name="Code_Produit" />
+                        <externalMetadataColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Description_Produit]"
+                          dataType="wstr"
+                          length="50"
+                          name="Description_Produit" />
+                        <externalMetadataColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Fournisseur]"
+                          dataType="wstr"
+                          length="50"
+                          name="Code_Fournisseur" />
+                        <externalMetadataColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Nom_Fournisseur]"
+                          dataType="wstr"
+                          length="50"
+                          name="Nom_Fournisseur" />
+                        <externalMetadataColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Canal_Vente]"
+                          dataType="wstr"
+                          length="50"
+                          name="Code_Canal_Vente" />
+                        <externalMetadataColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Canal_Vente]"
+                          dataType="wstr"
+                          length="50"
+                          name="Canal_Vente" />
+                        <externalMetadataColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Date_Vente]"
+                          dataType="wstr"
+                          length="50"
+                          name="Date_Vente" />
+                        <externalMetadataColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Client]"
+                          dataType="wstr"
+                          length="50"
+                          name="Code_Client" />
+                        <externalMetadataColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Quantite_Vendue]"
+                          dataType="i4"
+                          name="Quantite_Vendue" />
+                        <externalMetadataColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Date_Inscription_Client]"
+                          dataType="wstr"
+                          length="50"
+                          name="Date_Inscription_Client" />
+                        <externalMetadataColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Pays]"
+                          dataType="wstr"
+                          length="50"
+                          name="Code_Pays" />
+                        <externalMetadataColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Promotion]"
+                          dataType="wstr"
+                          length="50"
+                          name="Code_Promotion" />
+                        <externalMetadataColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Prix_Unitaire]"
+                          dataType="wstr"
+                          length="50"
+                          name="Prix_Unitaire" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Sortie d'erreur de destination ADO NET"
+                      synchronousInputId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="Utilise des données issues de SQL Server, OLE DB, ODBC ou Oracle, à l'aide du fournisseur de données .NET Framework correspondant. Utilisez une instruction Transact-SQL pour définir le jeu de résultats. Par exemple, extrayez des données depuis SQL Server à partir du fournisseur de données .NET Framework pour SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+                  description="Utilise des données issues de SQL Server, OLE DB, ODBC ou Oracle, à l'aide du fournisseur de données .NET Framework correspondant. Utilisez une instruction Transact-SQL pour définir le jeu de résultats. Par exemple, extrayez des données depuis SQL Server à partir du fournisseur de données .NET Framework pour SQL Server."
+                  name="Source ADO NET"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Spécifie l'instruction SQL utilisée par le composant pour extraire des données."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [Code_Produit]
+      ,[Description_Produit]
+      ,[Code_Fournisseur]
+      ,[Nom_Fournisseur]
+      ,[Code_Canal_Vente]
+      ,[Canal_Vente]
+      ,[Date_Vente]
+      ,[Code_Client]
+      ,[Quantite_Vendue]
+      ,[Date_Inscription_Client]
+      ,[Code_Pays]
+      ,[Code_Promotion]
+      ,[Prix_Unitaire]
+  FROM [ventes_analysis].[dbo].[gs_ventes]</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                      name="CommandTimeout">30</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indique si les colonnes externes qui ne sont pas des chaînes peuvent ou non être converties implicitement en chaînes dans les colonnes de sortie."
+                      name="AllowImplicitStringConversion">true</property>
+                    <property
+                      dataType="System.String"
+                      description="Nom de la table de base de données source."
+                      expressionType="Notify"
+                      name="TableOrViewName"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Spécifier le mode de récupération des informations de colonne externe"
+                      name="AccessMode"
+                      typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Connections[IDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[MCHERIF.ventes_analysis]"
+                      connectionManagerRefId="Package.ConnectionManagers[MCHERIF.ventes_analysis]"
+                      description="Gestionnaire de connexions managées"
+                      name="IDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET]"
+                      name="Sortie de source ADO NET">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Code_Produit]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[Code_Produit]"
+                          length="50"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Code_Produit]"
+                          name="Code_Produit"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Description_Produit]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[Description_Produit]"
+                          length="50"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Description_Produit]"
+                          name="Description_Produit"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Code_Fournisseur]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[Code_Fournisseur]"
+                          length="50"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Code_Fournisseur]"
+                          name="Code_Fournisseur"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Nom_Fournisseur]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[Nom_Fournisseur]"
+                          length="50"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Nom_Fournisseur]"
+                          name="Nom_Fournisseur"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Code_Canal_Vente]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[Code_Canal_Vente]"
+                          length="50"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Code_Canal_Vente]"
+                          name="Code_Canal_Vente"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Canal_Vente]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[Canal_Vente]"
+                          length="50"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Canal_Vente]"
+                          name="Canal_Vente"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Date_Vente]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[Date_Vente]"
+                          length="50"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Date_Vente]"
+                          name="Date_Vente"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Code_Client]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[Code_Client]"
+                          length="50"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Code_Client]"
+                          name="Code_Client"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Quantite_Vendue]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[Quantite_Vendue]"
+                          length="50"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Quantite_Vendue]"
+                          name="Quantite_Vendue"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Date_Inscription_Client]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[Date_Inscription_Client]"
+                          length="50"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Date_Inscription_Client]"
+                          name="Date_Inscription_Client"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Code_Pays]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[Code_Pays]"
+                          length="50"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Code_Pays]"
+                          name="Code_Pays"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Code_Promotion]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[Code_Promotion]"
+                          length="50"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Code_Promotion]"
+                          name="Code_Promotion"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Prix_Unitaire]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[Prix_Unitaire]"
+                          length="50"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[Prix_Unitaire]"
+                          name="Prix_Unitaire"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[Code_Produit]"
+                          dataType="wstr"
+                          length="50"
+                          name="Code_Produit" />
+                        <externalMetadataColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[Description_Produit]"
+                          dataType="wstr"
+                          length="50"
+                          name="Description_Produit" />
+                        <externalMetadataColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[Code_Fournisseur]"
+                          dataType="wstr"
+                          length="50"
+                          name="Code_Fournisseur" />
+                        <externalMetadataColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[Nom_Fournisseur]"
+                          dataType="wstr"
+                          length="50"
+                          name="Nom_Fournisseur" />
+                        <externalMetadataColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[Code_Canal_Vente]"
+                          dataType="wstr"
+                          length="50"
+                          name="Code_Canal_Vente" />
+                        <externalMetadataColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[Canal_Vente]"
+                          dataType="wstr"
+                          length="50"
+                          name="Canal_Vente" />
+                        <externalMetadataColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[Date_Vente]"
+                          dataType="wstr"
+                          length="50"
+                          name="Date_Vente" />
+                        <externalMetadataColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[Code_Client]"
+                          dataType="wstr"
+                          length="50"
+                          name="Code_Client" />
+                        <externalMetadataColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[Quantite_Vendue]"
+                          dataType="wstr"
+                          length="50"
+                          name="Quantite_Vendue" />
+                        <externalMetadataColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[Date_Inscription_Client]"
+                          dataType="wstr"
+                          length="50"
+                          name="Date_Inscription_Client" />
+                        <externalMetadataColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[Code_Pays]"
+                          dataType="wstr"
+                          length="50"
+                          name="Code_Pays" />
+                        <externalMetadataColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[Code_Promotion]"
+                          dataType="wstr"
+                          length="50"
+                          name="Code_Promotion" />
+                        <externalMetadataColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[Prix_Unitaire]"
+                          dataType="wstr"
+                          length="50"
+                          name="Prix_Unitaire" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET]"
+                      isErrorOut="true"
+                      name="Sortie d'erreur de source ADO NET">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[Code_Produit]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[Code_Produit]"
+                          name="Code_Produit" />
+                        <outputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[Description_Produit]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[Description_Produit]"
+                          name="Description_Produit" />
+                        <outputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[Code_Fournisseur]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[Code_Fournisseur]"
+                          name="Code_Fournisseur" />
+                        <outputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[Nom_Fournisseur]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[Nom_Fournisseur]"
+                          name="Nom_Fournisseur" />
+                        <outputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[Code_Canal_Vente]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[Code_Canal_Vente]"
+                          name="Code_Canal_Vente" />
+                        <outputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[Canal_Vente]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[Canal_Vente]"
+                          name="Canal_Vente" />
+                        <outputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[Date_Vente]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[Date_Vente]"
+                          name="Date_Vente" />
+                        <outputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[Code_Client]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[Code_Client]"
+                          name="Code_Client" />
+                        <outputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[Quantite_Vendue]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[Quantite_Vendue]"
+                          name="Quantite_Vendue" />
+                        <outputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[Date_Inscription_Client]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[Date_Inscription_Client]"
+                          name="Date_Inscription_Client" />
+                        <outputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[Code_Pays]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[Code_Pays]"
+                          name="Code_Pays" />
+                        <outputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[Code_Promotion]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[Code_Promotion]"
+                          name="Code_Promotion" />
+                        <outputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[Prix_Unitaire]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[Prix_Unitaire]"
+                          name="Prix_Unitaire" />
+                        <outputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Seq-dimVentes\TST_FOURNISSEUR.Paths[Sortie de source ADO NET]"
+                  endId="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET.Inputs[Entrée de destination ADO NET]"
+                  name="Sortie de source ADO NET"
+                  startId="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET.Outputs[Sortie de source ADO NET]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Seq-dimVentes\TST_TRUNCATE_DIM_FO"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tâche d'exécution de requêtes SQL"
+          DTS:DTSID="{cae57e62-41ea-4c98-9ec9-95742a9cc965}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="TST_TRUNCATE_DIM_FO"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{4F17A5FF-9FE0-442F-9EC0-72FCAB5054E1}"
+              SQLTask:BypassPrepare="False"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE Fact_ventes" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Seq-dimVentes.PrecedenceConstraints[Contrainte]"
+          DTS:CreationName=""
+          DTS:DTSID="{a420df7d-809e-4816-a680-431a29a85add}"
+          DTS:From="Package\Seq-dimVentes\TST_TRUNCATE_DIM_FO"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Contrainte"
+          DTS:To="Package\Seq-dimVentes\TST_FOURNISSEUR" />
       </DTS:PrecedenceConstraints>
     </DTS:Executable>
   </DTS:Executables>
@@ -1900,6 +2832,22 @@ GROUP BY Code_Fournisseur, Nom_Fournisseur</property>
       DTS:LogicalAnd="True"
       DTS:ObjectName="Contrainte 2"
       DTS:To="Package\Seq-dimClient" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Contrainte 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{0995BC96-FF53-4BBD-B0CC-4858EF2C35C2}"
+      DTS:From="Package\Conteneur de séquences"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Contrainte 3"
+      DTS:To="Package\Seq-dimPromotion" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Contrainte 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{EE25D7CE-6170-44EE-9E21-9CA7902A1CC5}"
+      DTS:From="Package\Conteneur de séquences"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Contrainte 4"
+      DTS:To="Package\Seq-dimVentes" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--Cette section CDATA contient des informations sur la disposition du package. Elle comprend des informations telles que les coordonnées (x,y), la largeur et la hauteur.-->
@@ -1951,27 +2899,27 @@ GROUP BY Code_Fournisseur, Nom_Fournisseur</property>
           Id="Package\Conteneur de séquences"
           TopLeft="442.315878091053,63.4705891254452" />
         <NodeLayout
-          Size="147.2,41.6"
-          Id="Package\Seq-dimProduit\TST_PRODUIT"
-          TopLeft="26.923816072211,117.552944350985" />
+          Size="172.8,41.6"
+          Id="Package\Seq-dimClient\TRUNCATE_DIM_CL"
+          TopLeft="20.2285726449928,16.2169950727589" />
         <NodeLayout
-          Size="198.4,41.6"
-          Id="Package\Seq-dimProduit\TST_TRUNCATE_DIM_PR"
-          TopLeft="5.81270460157975,14.4026161069551" />
+          Size="137.6,41.6"
+          Id="Package\Seq-dimClient\TST_CLIENT"
+          TopLeft="34.5142871739912,111.3803951002" />
         <EdgeLayout
-          Id="Package\Seq-dimProduit.PrecedenceConstraints[Contrainte]"
-          TopLeft="102.768260336895,56.0026161069551">
+          Id="Package\Seq-dimClient.PrecedenceConstraints[Contrainte]"
+          TopLeft="104.971429909492,57.8169950727589">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,61.55032824403"
+              EndConnector="0,53.5634000274411"
               Start="0,0"
-              End="0,54.05032824403">
+              End="0,46.0634000274411">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,54.05032824403" />
+                    End="0,46.0634000274411" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1983,32 +2931,10 @@ GROUP BY Code_Fournisseur, Nom_Fournisseur</property>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="209.6,190.4"
-          Size="209.6,233.6"
-          Id="Package\Seq-dimProduit"
-          TopLeft="723.730171055212,65.7647068046781" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Contrainte]"
-          TopLeft="649.515878091054,181.817647965062">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="74.2142929641576,0"
-              Start="0,0"
-              End="66.7142929641576,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="66.7142929641576,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          PanelSize="198.4,191.2"
+          Size="198.4,234.4"
+          Id="Package\Seq-dimClient"
+          TopLeft="136.507938832653,62.6535954504736" />
         <NodeLayout
           Size="172,41.6"
           Id="Package\Seq-dimFournisseur\TST_FOURNISSEUR"
@@ -2045,51 +2971,29 @@ GROUP BY Code_Fournisseur, Nom_Fournisseur</property>
           PanelSize="220.8,232.8"
           Size="220.8,276"
           Id="Package\Seq-dimFournisseur"
-          TopLeft="432.619054986506,347.176475457254" />
+          TopLeft="121.904763980787,349.220593090907" />
+        <NodeLayout
+          Size="147.2,41.6"
+          Id="Package\Seq-dimProduit\TST_PRODUIT"
+          TopLeft="26.923816072211,117.552944350985" />
+        <NodeLayout
+          Size="198.4,41.6"
+          Id="Package\Seq-dimProduit\TST_TRUNCATE_DIM_PR"
+          TopLeft="5.81270460157975,14.4026161069551" />
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Contrainte 1]"
-          TopLeft="544.46746653878,298.670589125445">
+          Id="Package\Seq-dimProduit.PrecedenceConstraints[Contrainte]"
+          TopLeft="102.768260336895,56.0026161069551">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,48.5058863318089"
+              EndConnector="0,61.55032824403"
               Start="0,0"
-              End="0,41.0058863318089">
+              End="0,54.05032824403">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,41.0058863318089" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="137.6,41.6"
-          Id="Package\Seq-dimClient\TST_CLIENT"
-          TopLeft="34.5142871739912,111.3803951002" />
-        <NodeLayout
-          Size="172.8,41.6"
-          Id="Package\Seq-dimClient\TRUNCATE_DIM_CL"
-          TopLeft="20.2285726449928,16.2169950727589" />
-        <EdgeLayout
-          Id="Package\Seq-dimClient.PrecedenceConstraints[Contrainte]"
-          TopLeft="104.971429909492,57.8169950727589">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,53.5634000274411"
-              Start="0,0"
-              End="0,46.0634000274411">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,46.0634000274411" />
+                    End="0,54.05032824403" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2101,10 +3005,103 @@ GROUP BY Code_Fournisseur, Nom_Fournisseur</property>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="198.4,191.2"
-          Size="198.4,234.4"
-          Id="Package\Seq-dimClient"
-          TopLeft="136.507938832653,62.6535954504736" />
+          PanelSize="209.6,190.4"
+          Size="209.6,233.6"
+          Id="Package\Seq-dimProduit"
+          TopLeft="723.730171055212,65.7647068046781" />
+        <NodeLayout
+          Size="172,41.6"
+          Id="Package\Seq-dimPromotion\TST_FOURNISSEUR"
+          TopLeft="28.7492081603226,135.992163023496" />
+        <NodeLayout
+          Size="198.4,41.6"
+          Id="Package\Seq-dimPromotion\TST_TRUNCATE_DIM_FO"
+          TopLeft="14.463493631324,18.2143832199394" />
+        <EdgeLayout
+          Id="Package\Seq-dimPromotion.PrecedenceConstraints[Contrainte]"
+          TopLeft="114.206350895823,59.8143832199394">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,76.1777798035565"
+              Start="0,0"
+              End="0,68.6777798035565">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,68.6777798035565" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="220.8,232.8"
+          Size="220.8,276"
+          Id="Package\Seq-dimPromotion"
+          TopLeft="728.151595110676,359.933011384411" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Contrainte]"
+          TopLeft="649.515878091054,181.817647965062">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="74.2142929641576,0"
+              Start="0,0"
+              End="66.7142929641576,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="66.7142929641576,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Contrainte 1]"
+          TopLeft="545.915878091053,298.670589125445">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-313.611114110265,50.5500039654618"
+              Start="0,0"
+              End="-313.611114110265,43.0500039654618">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.2750019827309" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.2750019827309"
+                    Point2="0,25.2750019827309"
+                    Point3="-4,25.2750019827309" />
+                  <mssgle:LineSegment
+                    End="-309.611114110265,25.2750019827309" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-309.611114110265,25.2750019827309"
+                    Point2="-313.611114110265,25.2750019827309"
+                    Point3="-313.611114110265,29.2750019827309" />
+                  <mssgle:LineSegment
+                    End="-313.611114110265,43.0500039654618" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Contrainte 2]"
           TopLeft="442.315878091053,180.462092287959">
@@ -2127,6 +3124,111 @@ GROUP BY Code_Fournisseur, Nom_Fournisseur</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Contrainte 3]"
+          TopLeft="579.115878091053,298.670589125445">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="259.435717019623,61.2624222589658"
+              Start="0,0"
+              End="259.435717019623,53.7624222589658">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.786635212823" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.786635212823"
+                    Point2="0,24.786635212823"
+                    Point3="4,24.786635212823" />
+                  <mssgle:LineSegment
+                    End="255.435717019623,24.786635212823" />
+                  <mssgle:CubicBezierSegment
+                    Point1="255.435717019623,24.786635212823"
+                    Point2="259.435717019623,24.786635212823"
+                    Point3="259.435717019623,28.786635212823" />
+                  <mssgle:LineSegment
+                    End="259.435717019623,53.7624222589658" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="172,41.6"
+          Id="Package\Seq-dimVentes\TST_FOURNISSEUR"
+          TopLeft="28.7492081603226,135.992163023496" />
+        <NodeLayout
+          Size="198.4,41.6"
+          Id="Package\Seq-dimVentes\TST_TRUNCATE_DIM_FO"
+          TopLeft="14.463493631324,18.2143832199394" />
+        <EdgeLayout
+          Id="Package\Seq-dimVentes.PrecedenceConstraints[Contrainte]"
+          TopLeft="114.206350895823,59.8143832199394">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,76.1777798035565"
+              Start="0,0"
+              End="0,68.6777798035565">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,68.6777798035565" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="220.8,232.8"
+          Size="220.8,276"
+          Id="Package\Seq-dimVentes"
+          TopLeft="446.094442668133,382.300658756932" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Contrainte 4]"
+          TopLeft="545.915878091053,298.670589125445">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="10.5785645770803,83.6300696314871"
+              Start="0,0"
+              End="10.5785645770803,76.1300696314871">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.8150348157436" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,37.8150348157436"
+                    Point2="0,41.8150348157436"
+                    Point3="4,41.8150348157436" />
+                  <mssgle:LineSegment
+                    End="6.57856457708033,41.8150348157436" />
+                  <mssgle:CubicBezierSegment
+                    Point1="6.57856457708033,41.8150348157436"
+                    Point2="10.5785645770803,41.8150348157436"
+                    Point3="10.5785645770803,45.8150348157436" />
+                  <mssgle:LineSegment
+                    End="10.5785645770803,76.1300696314871" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -2134,7 +3236,7 @@ GROUP BY Code_Fournisseur, Nom_Fournisseur</property>
     design-time-name="Package\Conteneur de séquences\Tâche de copie de fichier CSV">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="178.4,41.6"
           Id="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat"
@@ -2162,7 +3264,9 @@ GROUP BY Code_Fournisseur, Nom_Fournisseur</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -2177,118 +3281,10 @@ GROUP BY Code_Fournisseur, Nom_Fournisseur</property>
     </Properties>
   </PipelineComponentMetadata>
   <TaskHost
-    design-time-name="Package\Seq-dimProduit\TST_PRODUIT">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="149.6,41.6"
-          Id="Package\Seq-dimProduit\TST_PRODUIT\Source OLE DB"
-          TopLeft="238,65" />
-        <NodeLayout
-          Size="178.4,41.6"
-          Id="Package\Seq-dimProduit\TST_PRODUIT\Destination ADO NET"
-          TopLeft="219,179" />
-        <EdgeLayout
-          Id="Package\Seq-dimProduit\TST_PRODUIT.Paths[Sortie de source OLE DB]"
-          TopLeft="310.5,106.6">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,72.4000000000001"
-              Start="0,0"
-              End="0,64.9000000000001">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,64.9000000000001" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Seq-dimProduit\TST_PRODUIT\Source OLE DB">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Seq-dimProduit\TST_PRODUIT\Destination ADO NET">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <TaskHost
-    design-time-name="Package\Seq-dimFournisseur\TST_FOURNISSEUR">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="157.6,41.6"
-          Id="Package\Seq-dimFournisseur\TST_FOURNISSEUR\Source ADO NET"
-          TopLeft="267,86" />
-        <NodeLayout
-          Size="178.4,41.6"
-          Id="Package\Seq-dimFournisseur\TST_FOURNISSEUR\Destination ADO NET"
-          TopLeft="262,212" />
-        <EdgeLayout
-          Id="Package\Seq-dimFournisseur\TST_FOURNISSEUR.Paths[Sortie de source ADO NET]"
-          TopLeft="348.5,127.6">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,84.4"
-              Start="0,0"
-              End="0,76.9">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,76.9" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Seq-dimFournisseur\TST_FOURNISSEUR\Source ADO NET">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Seq-dimFournisseur\TST_FOURNISSEUR\Destination ADO NET">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <TaskHost
     design-time-name="Package\Seq-dimClient\TST_CLIENT">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="157.6,41.6"
           Id="Package\Seq-dimClient\TST_CLIENT\Source ADO NET"
@@ -2316,12 +3312,22 @@ GROUP BY Code_Fournisseur, Nom_Fournisseur</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Seq-dimClient\TST_CLIENT\Destination ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Seq-dimClient\TST_CLIENT\Source ADO NET">
     <Properties>
@@ -2330,8 +3336,222 @@ GROUP BY Code_Fournisseur, Nom_Fournisseur</property>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Seq-dimFournisseur\TST_FOURNISSEUR">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="157.6,41.6"
+          Id="Package\Seq-dimFournisseur\TST_FOURNISSEUR\Source ADO NET"
+          TopLeft="267,86" />
+        <NodeLayout
+          Size="178.4,41.6"
+          Id="Package\Seq-dimFournisseur\TST_FOURNISSEUR\Destination ADO NET"
+          TopLeft="262,212" />
+        <EdgeLayout
+          Id="Package\Seq-dimFournisseur\TST_FOURNISSEUR.Paths[Sortie de source ADO NET]"
+          TopLeft="348.5,127.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,84.4"
+              Start="0,0"
+              End="0,76.9">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,76.9" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Seq-dimClient\TST_CLIENT\Destination ADO NET">
+    design-time-name="Package\Seq-dimFournisseur\TST_FOURNISSEUR\Destination ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Seq-dimFournisseur\TST_FOURNISSEUR\Source ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Seq-dimProduit\TST_PRODUIT">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\Seq-dimProduit\TST_PRODUIT\Source OLE DB"
+          TopLeft="238,65" />
+        <NodeLayout
+          Size="178.4,41.6"
+          Id="Package\Seq-dimProduit\TST_PRODUIT\Destination ADO NET"
+          TopLeft="219,179" />
+        <EdgeLayout
+          Id="Package\Seq-dimProduit\TST_PRODUIT.Paths[Sortie de source OLE DB]"
+          TopLeft="310.5,106.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,72.4000000000001"
+              Start="0,0"
+              End="0,64.9000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,64.9000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Seq-dimProduit\TST_PRODUIT\Destination ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Seq-dimProduit\TST_PRODUIT\Source OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Seq-dimPromotion\TST_FOURNISSEUR">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="178.4,41.6"
+          Id="Package\Seq-dimPromotion\TST_FOURNISSEUR\Destination ADO NET"
+          TopLeft="262,212" />
+        <NodeLayout
+          Size="157.6,41.6"
+          Id="Package\Seq-dimPromotion\TST_FOURNISSEUR\Source ADO NET"
+          TopLeft="267,86" />
+        <EdgeLayout
+          Id="Package\Seq-dimPromotion\TST_FOURNISSEUR.Paths[Sortie de source ADO NET]"
+          TopLeft="348.5,127.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,84.4"
+              Start="0,0"
+              End="0,76.9">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,76.9" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Seq-dimPromotion\TST_FOURNISSEUR\Destination ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Seq-dimPromotion\TST_FOURNISSEUR\Source ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Seq-dimVentes\TST_FOURNISSEUR">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="178.4,41.6"
+          Id="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET"
+          TopLeft="262,212" />
+        <NodeLayout
+          Size="157.6,41.6"
+          Id="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET"
+          TopLeft="267,86" />
+        <EdgeLayout
+          Id="Package\Seq-dimVentes\TST_FOURNISSEUR.Paths[Sortie de source ADO NET]"
+          TopLeft="348.5,127.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,84.4"
+              Start="0,0"
+              End="0,76.9">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,76.9" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Seq-dimVentes\TST_FOURNISSEUR\Destination ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Seq-dimVentes\TST_FOURNISSEUR\Source ADO NET">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
