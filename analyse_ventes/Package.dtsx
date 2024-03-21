@@ -12,8 +12,8 @@
   DTS:LocaleID="1036"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="47"
-  DTS:VersionGUID="{51D1A44F-F697-4A8D-8E57-C5BD78D97915}">
+  DTS:VersionBuild="49"
+  DTS:VersionGUID="{BC4BA504-C7CB-47C0-A275-396AAB256592}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -221,747 +221,6 @@
   </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
-    <DTS:Executable
-      DTS:refId="Package\Conteneur de séquences"
-      DTS:CreationName="STOCK:SEQUENCE"
-      DTS:Description="Conteneur de séquences"
-      DTS:DTSID="{D1A81FF0-2D50-4378-BFD6-646AA4D94DA8}"
-      DTS:ExecutableType="STOCK:SEQUENCE"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Conteneur de séquences">
-      <DTS:Variables />
-      <DTS:Executables>
-        <DTS:Executable
-          DTS:refId="Package\Conteneur de séquences\TRUNCATE DATA"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Tâche d'exécution de requêtes SQL"
-          DTS:DTSID="{E23ED870-943F-4907-8F4F-F2DFDBE257A4}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="TRUNCATE DATA"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{1FAB411C-FCF5-495F-89BB-F5134639BDFA}"
-              SQLTask:SqlStatementSource="TRUNCATE TABLE gs_ventes" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV"
-          DTS:CreationName="Microsoft.Pipeline"
-          DTS:Description="Tâche de flux de données"
-          DTS:DTSID="{21DA4C76-DB3F-4BDE-AC46-89FE2FB9690C}"
-          DTS:ExecutableType="Microsoft.Pipeline"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Tâche de copie de fichier CSV">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <pipeline
-              version="1">
-              <components>
-                <component
-                  refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET"
-                  componentClassID="Microsoft.ManagedComponentHost"
-                  contactInfo="Charge des données dans une base de données compatible ADO.NET qui utilise une vue ou une table de base de données. Chargez les données dans une table nouvelle ou existante. Par exemple, utilisez un fournisseur ADO.NET pour ODBC pour charger des données dans une destination ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;2"
-                  description="Charge des données dans une base de données compatible ADO.NET qui utilise une vue ou une table de base de données. Chargez les données dans une table nouvelle ou existante. Par exemple, utilisez un fournisseur ADO.NET pour ODBC pour charger des données dans une destination ODBC."
-                  name="Destination ADO NET"
-                  usesDispositions="true"
-                  version="2">
-                  <properties>
-                    <property
-                      dataType="System.String"
-                      description="Nom de la table de base de données de destination."
-                      expressionType="Notify"
-                      name="TableOrViewName"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">[dbo].[gs_ventes]</property>
-                    <property
-                      dataType="System.Int32"
-                      description="Spécifiez le nombre de lignes par lot. La taille par défaut, 0, utilise la même taille que la mémoire tampon interne SSIS. "
-                      expressionType="Notify"
-                      name="BatchSize">0</property>
-                    <property
-                      dataType="System.Int32"
-                      description="Nombre de secondes avant qu'une commande n'expire. Une valeur égale à 0 indique un délai infini. "
-                      expressionType="Notify"
-                      name="CommandTimeout">30</property>
-                    <property
-                      dataType="System.Boolean"
-                      description="Spécifie si l'interface SqlBulkCopy doit être utilisée pour améliorer les performances des opérations d'insertion en bloc. Cette interface n'est prise en charge que par certains fournisseurs."
-                      expressionType="Notify"
-                      name="UseBulkInsertWhenPossible">true</property>
-                    <property
-                      dataType="System.String"
-                      name="UserComponentTypeName">Microsoft.ADONETDestination</property>
-                  </properties>
-                  <connections>
-                    <connection
-                      refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Connections[IDbConnection]"
-                      connectionManagerID="Package.ConnectionManagers[MCHERIF.ventes_analysis]"
-                      connectionManagerRefId="Package.ConnectionManagers[MCHERIF.ventes_analysis]"
-                      description="Gestionnaire de connexions managées"
-                      name="IDbConnection" />
-                  </connections>
-                  <inputs>
-                    <input
-                      refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET]"
-                      errorRowDisposition="FailComponent"
-                      hasSideEffects="true"
-                      name="Entrée de destination ADO NET">
-                      <inputColumns>
-                        <inputColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Code_Produit]"
-                          cachedCodepage="65001"
-                          cachedDataType="str"
-                          cachedLength="50"
-                          cachedName="Code_Produit"
-                          externalMetadataColumnId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Produit]"
-                          lineageId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Produit]" />
-                        <inputColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Description_Produit]"
-                          cachedCodepage="65001"
-                          cachedDataType="str"
-                          cachedLength="50"
-                          cachedName="Description_Produit"
-                          externalMetadataColumnId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Description_Produit]"
-                          lineageId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Description_Produit]" />
-                        <inputColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Code_Fournisseur]"
-                          cachedCodepage="65001"
-                          cachedDataType="str"
-                          cachedLength="50"
-                          cachedName="Code_Fournisseur"
-                          externalMetadataColumnId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Fournisseur]"
-                          lineageId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Fournisseur]" />
-                        <inputColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Nom_Fournisseur]"
-                          cachedCodepage="65001"
-                          cachedDataType="str"
-                          cachedLength="50"
-                          cachedName="Nom_Fournisseur"
-                          externalMetadataColumnId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Nom_Fournisseur]"
-                          lineageId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Nom_Fournisseur]" />
-                        <inputColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Code_Canal_Vente]"
-                          cachedCodepage="65001"
-                          cachedDataType="str"
-                          cachedLength="50"
-                          cachedName="Code_Canal_Vente"
-                          externalMetadataColumnId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Canal_Vente]"
-                          lineageId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Canal_Vente]" />
-                        <inputColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Canal_Vente]"
-                          cachedCodepage="65001"
-                          cachedDataType="str"
-                          cachedLength="50"
-                          cachedName="Canal_Vente"
-                          externalMetadataColumnId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Canal_Vente]"
-                          lineageId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Canal_Vente]" />
-                        <inputColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Date_Vente]"
-                          cachedCodepage="65001"
-                          cachedDataType="str"
-                          cachedLength="50"
-                          cachedName="Date_Vente"
-                          externalMetadataColumnId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Date_Vente]"
-                          lineageId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Date_Vente]" />
-                        <inputColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Code_Client]"
-                          cachedCodepage="65001"
-                          cachedDataType="str"
-                          cachedLength="50"
-                          cachedName="Code_Client"
-                          externalMetadataColumnId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Client]"
-                          lineageId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Client]" />
-                        <inputColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Quantite_Vendue]"
-                          cachedCodepage="65001"
-                          cachedDataType="str"
-                          cachedLength="50"
-                          cachedName="Quantite_Vendue"
-                          externalMetadataColumnId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Quantite_Vendue]"
-                          lineageId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Quantite_Vendue]" />
-                        <inputColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Date_Inscription_Client]"
-                          cachedCodepage="65001"
-                          cachedDataType="str"
-                          cachedLength="50"
-                          cachedName="Date_Inscription_Client"
-                          externalMetadataColumnId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Date_Inscription_Client]"
-                          lineageId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Date_Inscription_Client]" />
-                        <inputColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Code_Pays]"
-                          cachedCodepage="65001"
-                          cachedDataType="str"
-                          cachedLength="50"
-                          cachedName="Code_Pays"
-                          externalMetadataColumnId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Pays]"
-                          lineageId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Pays]" />
-                        <inputColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Code_Promotion]"
-                          cachedCodepage="65001"
-                          cachedDataType="str"
-                          cachedLength="50"
-                          cachedName="Code_Promotion"
-                          externalMetadataColumnId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Promotion]"
-                          lineageId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Promotion]" />
-                        <inputColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Prix_Unitaire]"
-                          cachedCodepage="65001"
-                          cachedDataType="str"
-                          cachedLength="50"
-                          cachedName="Prix_Unitaire"
-                          externalMetadataColumnId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Prix_Unitaire]"
-                          lineageId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Prix_Unitaire]" />
-                      </inputColumns>
-                      <externalMetadataColumns
-                        isUsed="True">
-                        <externalMetadataColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Produit]"
-                          dataType="wstr"
-                          length="50"
-                          name="Code_Produit" />
-                        <externalMetadataColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Description_Produit]"
-                          dataType="wstr"
-                          length="50"
-                          name="Description_Produit" />
-                        <externalMetadataColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Fournisseur]"
-                          dataType="wstr"
-                          length="50"
-                          name="Code_Fournisseur" />
-                        <externalMetadataColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Nom_Fournisseur]"
-                          dataType="wstr"
-                          length="50"
-                          name="Nom_Fournisseur" />
-                        <externalMetadataColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Canal_Vente]"
-                          dataType="wstr"
-                          length="50"
-                          name="Code_Canal_Vente" />
-                        <externalMetadataColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Canal_Vente]"
-                          dataType="wstr"
-                          length="50"
-                          name="Canal_Vente" />
-                        <externalMetadataColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Date_Vente]"
-                          dataType="wstr"
-                          length="50"
-                          name="Date_Vente" />
-                        <externalMetadataColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Client]"
-                          dataType="wstr"
-                          length="50"
-                          name="Code_Client" />
-                        <externalMetadataColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Quantite_Vendue]"
-                          dataType="wstr"
-                          length="50"
-                          name="Quantite_Vendue" />
-                        <externalMetadataColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Date_Inscription_Client]"
-                          dataType="wstr"
-                          length="50"
-                          name="Date_Inscription_Client" />
-                        <externalMetadataColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Pays]"
-                          dataType="wstr"
-                          length="50"
-                          name="Code_Pays" />
-                        <externalMetadataColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Promotion]"
-                          dataType="wstr"
-                          length="50"
-                          name="Code_Promotion" />
-                        <externalMetadataColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Prix_Unitaire]"
-                          dataType="wstr"
-                          length="50"
-                          name="Prix_Unitaire" />
-                      </externalMetadataColumns>
-                    </input>
-                  </inputs>
-                  <outputs>
-                    <output
-                      refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET]"
-                      exclusionGroup="1"
-                      isErrorOut="true"
-                      name="Sortie d'erreur de destination ADO NET"
-                      synchronousInputId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET]">
-                      <outputColumns>
-                        <outputColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET].Columns[ErrorCode]"
-                          dataType="i4"
-                          lineageId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET].Columns[ErrorCode]"
-                          name="ErrorCode"
-                          specialFlags="1" />
-                        <outputColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET].Columns[ErrorColumn]"
-                          dataType="i4"
-                          lineageId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET].Columns[ErrorColumn]"
-                          name="ErrorColumn"
-                          specialFlags="2" />
-                      </outputColumns>
-                      <externalMetadataColumns />
-                    </output>
-                  </outputs>
-                </component>
-                <component
-                  refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat"
-                  componentClassID="Microsoft.FlatFileSource"
-                  contactInfo="Source du fichier plat;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;1"
-                  description="Source du fichier plat"
-                  localeId="1036"
-                  name="Source du fichier plat"
-                  usesDispositions="true"
-                  version="1">
-                  <properties>
-                    <property
-                      dataType="System.Boolean"
-                      description="Spécifie si les colonnes dont la longueur est zéro sont traitées comme des valeurs NULL."
-                      name="RetainNulls">false</property>
-                    <property
-                      dataType="System.String"
-                      description="Spécifie le nom d'une colonne de sortie contenant le nom du fichier. Si aucun nom n'est spécifié, aucune colonne de sortie contenant le nom du fichier ne sera générée."
-                      name="FileNameColumnName"></property>
-                  </properties>
-                  <connections>
-                    <connection
-                      refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Connections[FlatFileConnection]"
-                      connectionManagerID="Package.ConnectionManagers[source_csv]"
-                      connectionManagerRefId="Package.ConnectionManagers[source_csv]"
-                      name="FlatFileConnection" />
-                  </connections>
-                  <outputs>
-                    <output
-                      refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat]"
-                      name="Sortie de source de fichier plat">
-                      <outputColumns>
-                        <outputColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Produit]"
-                          codePage="65001"
-                          dataType="str"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Code_Produit]"
-                          length="50"
-                          lineageId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Produit]"
-                          name="Code_Produit"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              dataType="System.Boolean"
-                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
-                              name="FastParse">false</property>
-                            <property
-                              dataType="System.Boolean"
-                              description="Indique si les données sont au format binaire."
-                              name="UseBinaryFormat">false</property>
-                          </properties>
-                        </outputColumn>
-                        <outputColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Description_Produit]"
-                          codePage="65001"
-                          dataType="str"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Description_Produit]"
-                          length="50"
-                          lineageId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Description_Produit]"
-                          name="Description_Produit"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              dataType="System.Boolean"
-                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
-                              name="FastParse">false</property>
-                            <property
-                              dataType="System.Boolean"
-                              description="Indique si les données sont au format binaire."
-                              name="UseBinaryFormat">false</property>
-                          </properties>
-                        </outputColumn>
-                        <outputColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Fournisseur]"
-                          codePage="65001"
-                          dataType="str"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Code_Fournisseur]"
-                          length="50"
-                          lineageId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Fournisseur]"
-                          name="Code_Fournisseur"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              dataType="System.Boolean"
-                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
-                              name="FastParse">false</property>
-                            <property
-                              dataType="System.Boolean"
-                              description="Indique si les données sont au format binaire."
-                              name="UseBinaryFormat">false</property>
-                          </properties>
-                        </outputColumn>
-                        <outputColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Nom_Fournisseur]"
-                          codePage="65001"
-                          dataType="str"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Nom_Fournisseur]"
-                          length="50"
-                          lineageId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Nom_Fournisseur]"
-                          name="Nom_Fournisseur"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              dataType="System.Boolean"
-                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
-                              name="FastParse">false</property>
-                            <property
-                              dataType="System.Boolean"
-                              description="Indique si les données sont au format binaire."
-                              name="UseBinaryFormat">false</property>
-                          </properties>
-                        </outputColumn>
-                        <outputColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Canal_Vente]"
-                          codePage="65001"
-                          dataType="str"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Code_Canal_Vente]"
-                          length="50"
-                          lineageId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Canal_Vente]"
-                          name="Code_Canal_Vente"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              dataType="System.Boolean"
-                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
-                              name="FastParse">false</property>
-                            <property
-                              dataType="System.Boolean"
-                              description="Indique si les données sont au format binaire."
-                              name="UseBinaryFormat">false</property>
-                          </properties>
-                        </outputColumn>
-                        <outputColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Canal_Vente]"
-                          codePage="65001"
-                          dataType="str"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Canal_Vente]"
-                          length="50"
-                          lineageId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Canal_Vente]"
-                          name="Canal_Vente"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              dataType="System.Boolean"
-                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
-                              name="FastParse">false</property>
-                            <property
-                              dataType="System.Boolean"
-                              description="Indique si les données sont au format binaire."
-                              name="UseBinaryFormat">false</property>
-                          </properties>
-                        </outputColumn>
-                        <outputColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Date_Vente]"
-                          codePage="65001"
-                          dataType="str"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Date_Vente]"
-                          length="50"
-                          lineageId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Date_Vente]"
-                          name="Date_Vente"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              dataType="System.Boolean"
-                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
-                              name="FastParse">false</property>
-                            <property
-                              dataType="System.Boolean"
-                              description="Indique si les données sont au format binaire."
-                              name="UseBinaryFormat">false</property>
-                          </properties>
-                        </outputColumn>
-                        <outputColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Client]"
-                          codePage="65001"
-                          dataType="str"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Code_Client]"
-                          length="50"
-                          lineageId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Client]"
-                          name="Code_Client"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              dataType="System.Boolean"
-                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
-                              name="FastParse">false</property>
-                            <property
-                              dataType="System.Boolean"
-                              description="Indique si les données sont au format binaire."
-                              name="UseBinaryFormat">false</property>
-                          </properties>
-                        </outputColumn>
-                        <outputColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Quantite_Vendue]"
-                          codePage="65001"
-                          dataType="str"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Quantite_Vendue]"
-                          length="50"
-                          lineageId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Quantite_Vendue]"
-                          name="Quantite_Vendue"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              dataType="System.Boolean"
-                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
-                              name="FastParse">false</property>
-                            <property
-                              dataType="System.Boolean"
-                              description="Indique si les données sont au format binaire."
-                              name="UseBinaryFormat">false</property>
-                          </properties>
-                        </outputColumn>
-                        <outputColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Date_Inscription_Client]"
-                          codePage="65001"
-                          dataType="str"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Date_Inscription_Client]"
-                          length="50"
-                          lineageId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Date_Inscription_Client]"
-                          name="Date_Inscription_Client"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              dataType="System.Boolean"
-                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
-                              name="FastParse">false</property>
-                            <property
-                              dataType="System.Boolean"
-                              description="Indique si les données sont au format binaire."
-                              name="UseBinaryFormat">false</property>
-                          </properties>
-                        </outputColumn>
-                        <outputColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Pays]"
-                          codePage="65001"
-                          dataType="str"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Code_Pays]"
-                          length="50"
-                          lineageId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Pays]"
-                          name="Code_Pays"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              dataType="System.Boolean"
-                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
-                              name="FastParse">false</property>
-                            <property
-                              dataType="System.Boolean"
-                              description="Indique si les données sont au format binaire."
-                              name="UseBinaryFormat">false</property>
-                          </properties>
-                        </outputColumn>
-                        <outputColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Promotion]"
-                          codePage="65001"
-                          dataType="str"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Code_Promotion]"
-                          length="50"
-                          lineageId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Promotion]"
-                          name="Code_Promotion"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              dataType="System.Boolean"
-                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
-                              name="FastParse">false</property>
-                            <property
-                              dataType="System.Boolean"
-                              description="Indique si les données sont au format binaire."
-                              name="UseBinaryFormat">false</property>
-                          </properties>
-                        </outputColumn>
-                        <outputColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Prix_Unitaire]"
-                          codePage="65001"
-                          dataType="str"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Prix_Unitaire]"
-                          length="50"
-                          lineageId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Prix_Unitaire]"
-                          name="Prix_Unitaire"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              dataType="System.Boolean"
-                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
-                              name="FastParse">false</property>
-                            <property
-                              dataType="System.Boolean"
-                              description="Indique si les données sont au format binaire."
-                              name="UseBinaryFormat">false</property>
-                          </properties>
-                        </outputColumn>
-                      </outputColumns>
-                      <externalMetadataColumns
-                        isUsed="True">
-                        <externalMetadataColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Code_Produit]"
-                          codePage="65001"
-                          dataType="str"
-                          length="50"
-                          name="Code_Produit" />
-                        <externalMetadataColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Description_Produit]"
-                          codePage="65001"
-                          dataType="str"
-                          length="50"
-                          name="Description_Produit" />
-                        <externalMetadataColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Code_Fournisseur]"
-                          codePage="65001"
-                          dataType="str"
-                          length="50"
-                          name="Code_Fournisseur" />
-                        <externalMetadataColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Nom_Fournisseur]"
-                          codePage="65001"
-                          dataType="str"
-                          length="50"
-                          name="Nom_Fournisseur" />
-                        <externalMetadataColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Code_Canal_Vente]"
-                          codePage="65001"
-                          dataType="str"
-                          length="50"
-                          name="Code_Canal_Vente" />
-                        <externalMetadataColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Canal_Vente]"
-                          codePage="65001"
-                          dataType="str"
-                          length="50"
-                          name="Canal_Vente" />
-                        <externalMetadataColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Date_Vente]"
-                          codePage="65001"
-                          dataType="str"
-                          length="50"
-                          name="Date_Vente" />
-                        <externalMetadataColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Code_Client]"
-                          codePage="65001"
-                          dataType="str"
-                          length="50"
-                          name="Code_Client" />
-                        <externalMetadataColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Quantite_Vendue]"
-                          codePage="65001"
-                          dataType="str"
-                          length="50"
-                          name="Quantite_Vendue" />
-                        <externalMetadataColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Date_Inscription_Client]"
-                          codePage="65001"
-                          dataType="str"
-                          length="50"
-                          name="Date_Inscription_Client" />
-                        <externalMetadataColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Code_Pays]"
-                          codePage="65001"
-                          dataType="str"
-                          length="50"
-                          name="Code_Pays" />
-                        <externalMetadataColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Code_Promotion]"
-                          codePage="65001"
-                          dataType="str"
-                          length="50"
-                          name="Code_Promotion" />
-                        <externalMetadataColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Prix_Unitaire]"
-                          codePage="65001"
-                          dataType="str"
-                          length="50"
-                          name="Prix_Unitaire" />
-                      </externalMetadataColumns>
-                    </output>
-                    <output
-                      refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie d'erreur de source de fichier plat]"
-                      isErrorOut="true"
-                      name="Sortie d'erreur de source de fichier plat">
-                      <outputColumns>
-                        <outputColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie d'erreur de source de fichier plat].Columns[Colonne de sortie d'erreur de source de fichier plat]"
-                          codePage="65001"
-                          dataType="text"
-                          description="Colonne de sortie d'erreur de source de fichier plat"
-                          lineageId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie d'erreur de source de fichier plat].Columns[Colonne de sortie d'erreur de source de fichier plat]"
-                          name="Colonne de sortie d'erreur de source de fichier plat" />
-                        <outputColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie d'erreur de source de fichier plat].Columns[ErrorCode]"
-                          dataType="i4"
-                          lineageId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie d'erreur de source de fichier plat].Columns[ErrorCode]"
-                          name="ErrorCode"
-                          specialFlags="1" />
-                        <outputColumn
-                          refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie d'erreur de source de fichier plat].Columns[ErrorColumn]"
-                          dataType="i4"
-                          lineageId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie d'erreur de source de fichier plat].Columns[ErrorColumn]"
-                          name="ErrorColumn"
-                          specialFlags="2" />
-                      </outputColumns>
-                      <externalMetadataColumns />
-                    </output>
-                  </outputs>
-                </component>
-              </components>
-              <paths>
-                <path
-                  refId="Package\Conteneur de séquences\Tâche de copie de fichier CSV.Paths[Sortie de source de fichier plat]"
-                  endId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET]"
-                  name="Sortie de source de fichier plat"
-                  startId="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat]" />
-              </paths>
-            </pipeline>
-          </DTS:ObjectData>
-        </DTS:Executable>
-      </DTS:Executables>
-      <DTS:PrecedenceConstraints>
-        <DTS:PrecedenceConstraint
-          DTS:refId="Package\Conteneur de séquences.PrecedenceConstraints[Contrainte]"
-          DTS:CreationName=""
-          DTS:DTSID="{96DE3B79-2E70-4C1A-BDDA-2C28C631F9A6}"
-          DTS:From="Package\Conteneur de séquences\TRUNCATE DATA"
-          DTS:LogicalAnd="True"
-          DTS:ObjectName="Contrainte"
-          DTS:To="Package\Conteneur de séquences\Tâche de copie de fichier CSV" />
-      </DTS:PrecedenceConstraints>
-    </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Seq-dimClient"
       DTS:CreationName="STOCK:SEQUENCE"
@@ -1556,7 +815,7 @@ GROUP BY Code_Fournisseur, Nom_Fournisseur</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="TST_TRUNCATE_DIM_FO"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -1864,7 +1123,7 @@ GROUP BY Code_Fournisseur, Nom_Fournisseur</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="TST_TRUNCATE_DIM_PR"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -2121,7 +1380,7 @@ FROM  gs_ventes</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="TST_TRUNCATE_DIM_FO"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -2785,7 +2044,7 @@ FROM  gs_ventes</property>
           DTS:LocaleID="-1"
           DTS:ObjectName="TST_TRUNCATE_DIM_FO"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -2806,13 +2065,754 @@ FROM  gs_ventes</property>
           DTS:To="Package\Seq-dimVentes\TST_FOURNISSEUR" />
       </DTS:PrecedenceConstraints>
     </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Seq_initial"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Conteneur de séquences"
+      DTS:DTSID="{D1A81FF0-2D50-4378-BFD6-646AA4D94DA8}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Seq_initial">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Seq_initial\TRUNCATE DATA"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tâche d'exécution de requêtes SQL"
+          DTS:DTSID="{E23ED870-943F-4907-8F4F-F2DFDBE257A4}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="TRUNCATE DATA"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1FAB411C-FCF5-495F-89BB-F5134639BDFA}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE gs_ventes" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Seq_initial\Tâche de copie de fichier CSV"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Tâche de flux de données"
+          DTS:DTSID="{21DA4C76-DB3F-4BDE-AC46-89FE2FB9690C}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Tâche de copie de fichier CSV">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="Charge des données dans une base de données compatible ADO.NET qui utilise une vue ou une table de base de données. Chargez les données dans une table nouvelle ou existante. Par exemple, utilisez un fournisseur ADO.NET pour ODBC pour charger des données dans une destination ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;2"
+                  description="Charge des données dans une base de données compatible ADO.NET qui utilise une vue ou une table de base de données. Chargez les données dans une table nouvelle ou existante. Par exemple, utilisez un fournisseur ADO.NET pour ODBC pour charger des données dans une destination ODBC."
+                  name="Destination ADO NET"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Nom de la table de base de données de destination."
+                      expressionType="Notify"
+                      name="TableOrViewName"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">[dbo].[gs_ventes]</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Spécifiez le nombre de lignes par lot. La taille par défaut, 0, utilise la même taille que la mémoire tampon interne SSIS. "
+                      expressionType="Notify"
+                      name="BatchSize">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Nombre de secondes avant qu'une commande n'expire. Une valeur égale à 0 indique un délai infini. "
+                      expressionType="Notify"
+                      name="CommandTimeout">30</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Spécifie si l'interface SqlBulkCopy doit être utilisée pour améliorer les performances des opérations d'insertion en bloc. Cette interface n'est prise en charge que par certains fournisseurs."
+                      expressionType="Notify"
+                      name="UseBulkInsertWhenPossible">true</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Connections[IDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[MCHERIF.ventes_analysis]"
+                      connectionManagerRefId="Package.ConnectionManagers[MCHERIF.ventes_analysis]"
+                      description="Gestionnaire de connexions managées"
+                      name="IDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET]"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Entrée de destination ADO NET">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Code_Produit]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Code_Produit"
+                          externalMetadataColumnId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Produit]"
+                          lineageId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Produit]" />
+                        <inputColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Description_Produit]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Description_Produit"
+                          externalMetadataColumnId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Description_Produit]"
+                          lineageId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Description_Produit]" />
+                        <inputColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Code_Fournisseur]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Code_Fournisseur"
+                          externalMetadataColumnId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Fournisseur]"
+                          lineageId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Fournisseur]" />
+                        <inputColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Nom_Fournisseur]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Nom_Fournisseur"
+                          externalMetadataColumnId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Nom_Fournisseur]"
+                          lineageId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Nom_Fournisseur]" />
+                        <inputColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Code_Canal_Vente]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Code_Canal_Vente"
+                          externalMetadataColumnId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Canal_Vente]"
+                          lineageId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Canal_Vente]" />
+                        <inputColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Canal_Vente]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Canal_Vente"
+                          externalMetadataColumnId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Canal_Vente]"
+                          lineageId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Canal_Vente]" />
+                        <inputColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Date_Vente]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Date_Vente"
+                          externalMetadataColumnId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Date_Vente]"
+                          lineageId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Date_Vente]" />
+                        <inputColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Code_Client]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Code_Client"
+                          externalMetadataColumnId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Client]"
+                          lineageId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Client]" />
+                        <inputColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Quantite_Vendue]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Quantite_Vendue"
+                          externalMetadataColumnId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Quantite_Vendue]"
+                          lineageId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Quantite_Vendue]" />
+                        <inputColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Date_Inscription_Client]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Date_Inscription_Client"
+                          externalMetadataColumnId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Date_Inscription_Client]"
+                          lineageId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Date_Inscription_Client]" />
+                        <inputColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Code_Pays]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Code_Pays"
+                          externalMetadataColumnId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Pays]"
+                          lineageId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Pays]" />
+                        <inputColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Code_Promotion]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Code_Promotion"
+                          externalMetadataColumnId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Promotion]"
+                          lineageId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Promotion]" />
+                        <inputColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[Prix_Unitaire]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Prix_Unitaire"
+                          externalMetadataColumnId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Prix_Unitaire]"
+                          lineageId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Prix_Unitaire]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Produit]"
+                          dataType="wstr"
+                          length="50"
+                          name="Code_Produit" />
+                        <externalMetadataColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Description_Produit]"
+                          dataType="wstr"
+                          length="50"
+                          name="Description_Produit" />
+                        <externalMetadataColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Fournisseur]"
+                          dataType="wstr"
+                          length="50"
+                          name="Code_Fournisseur" />
+                        <externalMetadataColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Nom_Fournisseur]"
+                          dataType="wstr"
+                          length="50"
+                          name="Nom_Fournisseur" />
+                        <externalMetadataColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Canal_Vente]"
+                          dataType="wstr"
+                          length="50"
+                          name="Code_Canal_Vente" />
+                        <externalMetadataColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Canal_Vente]"
+                          dataType="wstr"
+                          length="50"
+                          name="Canal_Vente" />
+                        <externalMetadataColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Date_Vente]"
+                          dataType="wstr"
+                          length="50"
+                          name="Date_Vente" />
+                        <externalMetadataColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Client]"
+                          dataType="wstr"
+                          length="50"
+                          name="Code_Client" />
+                        <externalMetadataColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Quantite_Vendue]"
+                          dataType="wstr"
+                          length="50"
+                          name="Quantite_Vendue" />
+                        <externalMetadataColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Date_Inscription_Client]"
+                          dataType="wstr"
+                          length="50"
+                          name="Date_Inscription_Client" />
+                        <externalMetadataColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Pays]"
+                          dataType="wstr"
+                          length="50"
+                          name="Code_Pays" />
+                        <externalMetadataColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Code_Promotion]"
+                          dataType="wstr"
+                          length="50"
+                          name="Code_Promotion" />
+                        <externalMetadataColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[Prix_Unitaire]"
+                          dataType="wstr"
+                          length="50"
+                          name="Prix_Unitaire" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Sortie d'erreur de destination ADO NET"
+                      synchronousInputId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat"
+                  componentClassID="Microsoft.FlatFileSource"
+                  contactInfo="Source du fichier plat;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;1"
+                  description="Source du fichier plat"
+                  localeId="1036"
+                  name="Source du fichier plat"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Spécifie si les colonnes dont la longueur est zéro sont traitées comme des valeurs NULL."
+                      name="RetainNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Spécifie le nom d'une colonne de sortie contenant le nom du fichier. Si aucun nom n'est spécifié, aucune colonne de sortie contenant le nom du fichier ne sera générée."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[source_csv]"
+                      connectionManagerRefId="Package.ConnectionManagers[source_csv]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat]"
+                      name="Sortie de source de fichier plat">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Produit]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Code_Produit]"
+                          length="50"
+                          lineageId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Produit]"
+                          name="Code_Produit"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si les données sont au format binaire."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Description_Produit]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Description_Produit]"
+                          length="50"
+                          lineageId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Description_Produit]"
+                          name="Description_Produit"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si les données sont au format binaire."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Fournisseur]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Code_Fournisseur]"
+                          length="50"
+                          lineageId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Fournisseur]"
+                          name="Code_Fournisseur"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si les données sont au format binaire."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Nom_Fournisseur]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Nom_Fournisseur]"
+                          length="50"
+                          lineageId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Nom_Fournisseur]"
+                          name="Nom_Fournisseur"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si les données sont au format binaire."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Canal_Vente]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Code_Canal_Vente]"
+                          length="50"
+                          lineageId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Canal_Vente]"
+                          name="Code_Canal_Vente"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si les données sont au format binaire."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Canal_Vente]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Canal_Vente]"
+                          length="50"
+                          lineageId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Canal_Vente]"
+                          name="Canal_Vente"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si les données sont au format binaire."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Date_Vente]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Date_Vente]"
+                          length="50"
+                          lineageId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Date_Vente]"
+                          name="Date_Vente"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si les données sont au format binaire."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Client]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Code_Client]"
+                          length="50"
+                          lineageId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Client]"
+                          name="Code_Client"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si les données sont au format binaire."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Quantite_Vendue]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Quantite_Vendue]"
+                          length="50"
+                          lineageId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Quantite_Vendue]"
+                          name="Quantite_Vendue"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si les données sont au format binaire."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Date_Inscription_Client]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Date_Inscription_Client]"
+                          length="50"
+                          lineageId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Date_Inscription_Client]"
+                          name="Date_Inscription_Client"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si les données sont au format binaire."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Pays]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Code_Pays]"
+                          length="50"
+                          lineageId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Pays]"
+                          name="Code_Pays"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si les données sont au format binaire."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Promotion]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Code_Promotion]"
+                          length="50"
+                          lineageId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Code_Promotion]"
+                          name="Code_Promotion"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si les données sont au format binaire."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Prix_Unitaire]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Prix_Unitaire]"
+                          length="50"
+                          lineageId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].Columns[Prix_Unitaire]"
+                          name="Prix_Unitaire"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si les données sont au format binaire."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Code_Produit]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="Code_Produit" />
+                        <externalMetadataColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Description_Produit]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="Description_Produit" />
+                        <externalMetadataColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Code_Fournisseur]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="Code_Fournisseur" />
+                        <externalMetadataColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Nom_Fournisseur]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="Nom_Fournisseur" />
+                        <externalMetadataColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Code_Canal_Vente]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="Code_Canal_Vente" />
+                        <externalMetadataColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Canal_Vente]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="Canal_Vente" />
+                        <externalMetadataColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Date_Vente]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="Date_Vente" />
+                        <externalMetadataColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Code_Client]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="Code_Client" />
+                        <externalMetadataColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Quantite_Vendue]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="Quantite_Vendue" />
+                        <externalMetadataColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Date_Inscription_Client]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="Date_Inscription_Client" />
+                        <externalMetadataColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Code_Pays]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="Code_Pays" />
+                        <externalMetadataColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Code_Promotion]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="Code_Promotion" />
+                        <externalMetadataColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat].ExternalColumns[Prix_Unitaire]"
+                          codePage="65001"
+                          dataType="str"
+                          length="50"
+                          name="Prix_Unitaire" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie d'erreur de source de fichier plat]"
+                      isErrorOut="true"
+                      name="Sortie d'erreur de source de fichier plat">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie d'erreur de source de fichier plat].Columns[Colonne de sortie d'erreur de source de fichier plat]"
+                          codePage="65001"
+                          dataType="text"
+                          description="Colonne de sortie d'erreur de source de fichier plat"
+                          lineageId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie d'erreur de source de fichier plat].Columns[Colonne de sortie d'erreur de source de fichier plat]"
+                          name="Colonne de sortie d'erreur de source de fichier plat" />
+                        <outputColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie d'erreur de source de fichier plat].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie d'erreur de source de fichier plat].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie d'erreur de source de fichier plat].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie d'erreur de source de fichier plat].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Seq_initial\Tâche de copie de fichier CSV.Paths[Sortie de source de fichier plat]"
+                  endId="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET.Inputs[Entrée de destination ADO NET]"
+                  name="Sortie de source de fichier plat"
+                  startId="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat.Outputs[Sortie de source de fichier plat]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Seq_initial.PrecedenceConstraints[Contrainte]"
+          DTS:CreationName=""
+          DTS:DTSID="{96DE3B79-2E70-4C1A-BDDA-2C28C631F9A6}"
+          DTS:From="Package\Seq_initial\TRUNCATE DATA"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Contrainte"
+          DTS:To="Package\Seq_initial\Tâche de copie de fichier CSV" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Contrainte]"
       DTS:CreationName=""
       DTS:DTSID="{096A48BF-7E71-49AB-BFCE-42726AD54E89}"
-      DTS:From="Package\Conteneur de séquences"
+      DTS:From="Package\Seq_initial"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Contrainte"
       DTS:To="Package\Seq-dimProduit" />
@@ -2820,7 +2820,7 @@ FROM  gs_ventes</property>
       DTS:refId="Package.PrecedenceConstraints[Contrainte 1]"
       DTS:CreationName=""
       DTS:DTSID="{B250B932-81F5-4496-88E9-2C0C9BDFCE2B}"
-      DTS:From="Package\Conteneur de séquences"
+      DTS:From="Package\Seq_initial"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Contrainte 1"
       DTS:To="Package\Seq-dimFournisseur" />
@@ -2828,7 +2828,7 @@ FROM  gs_ventes</property>
       DTS:refId="Package.PrecedenceConstraints[Contrainte 2]"
       DTS:CreationName=""
       DTS:DTSID="{C934CDCF-BB33-47DA-BB35-9731D91B8010}"
-      DTS:From="Package\Conteneur de séquences"
+      DTS:From="Package\Seq_initial"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Contrainte 2"
       DTS:To="Package\Seq-dimClient" />
@@ -2836,7 +2836,7 @@ FROM  gs_ventes</property>
       DTS:refId="Package.PrecedenceConstraints[Contrainte 3]"
       DTS:CreationName=""
       DTS:DTSID="{0995BC96-FF53-4BBD-B0CC-4858EF2C35C2}"
-      DTS:From="Package\Conteneur de séquences"
+      DTS:From="Package\Seq_initial"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Contrainte 3"
       DTS:To="Package\Seq-dimPromotion" />
@@ -2844,7 +2844,7 @@ FROM  gs_ventes</property>
       DTS:refId="Package.PrecedenceConstraints[Contrainte 4]"
       DTS:CreationName=""
       DTS:DTSID="{EE25D7CE-6170-44EE-9E21-9CA7902A1CC5}"
-      DTS:From="Package\Conteneur de séquences"
+      DTS:From="Package\Seq_initial"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Contrainte 4"
       DTS:To="Package\Seq-dimVentes" />
@@ -2863,14 +2863,14 @@ FROM  gs_ventes</property>
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="178.4,41.6"
-          Id="Package\Conteneur de séquences\Tâche de copie de fichier CSV"
+          Id="Package\Seq_initial\Tâche de copie de fichier CSV"
           TopLeft="16.9285716231988,117.147060389337" />
         <NodeLayout
           Size="180.8,41.6"
-          Id="Package\Conteneur de séquences\TRUNCATE DATA"
+          Id="Package\Seq_initial\TRUNCATE DATA"
           TopLeft="14.0000008514949,12.3882366347066" />
         <EdgeLayout
-          Id="Package\Conteneur de séquences.PrecedenceConstraints[Contrainte]"
+          Id="Package\Seq_initial.PrecedenceConstraints[Contrainte]"
           TopLeft="105.264286237347,53.9882366347066">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -2896,7 +2896,7 @@ FROM  gs_ventes</property>
           IsExpanded="True"
           PanelSize="207.2,192"
           Size="207.2,235.2"
-          Id="Package\Conteneur de séquences"
+          Id="Package\Seq_initial"
           TopLeft="442.315878091053,63.4705891254452" />
         <NodeLayout
           Size="172.8,41.6"
@@ -3046,118 +3046,6 @@ FROM  gs_ventes</property>
           Size="220.8,276"
           Id="Package\Seq-dimPromotion"
           TopLeft="728.151595110676,359.933011384411" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Contrainte]"
-          TopLeft="649.515878091054,181.817647965062">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="74.2142929641576,0"
-              Start="0,0"
-              End="66.7142929641576,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="66.7142929641576,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Contrainte 1]"
-          TopLeft="545.915878091053,298.670589125445">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-313.611114110265,50.5500039654618"
-              Start="0,0"
-              End="-313.611114110265,43.0500039654618">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,21.2750019827309" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,21.2750019827309"
-                    Point2="0,25.2750019827309"
-                    Point3="-4,25.2750019827309" />
-                  <mssgle:LineSegment
-                    End="-309.611114110265,25.2750019827309" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-309.611114110265,25.2750019827309"
-                    Point2="-313.611114110265,25.2750019827309"
-                    Point3="-313.611114110265,29.2750019827309" />
-                  <mssgle:LineSegment
-                    End="-313.611114110265,43.0500039654618" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Contrainte 2]"
-          TopLeft="442.315878091053,180.462092287959">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-107.4079392584,0"
-              Start="0,0"
-              End="-99.9079392584,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="-99.9079392584,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Contrainte 3]"
-          TopLeft="579.115878091053,298.670589125445">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="259.435717019623,61.2624222589658"
-              Start="0,0"
-              End="259.435717019623,53.7624222589658">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.786635212823" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.786635212823"
-                    Point2="0,24.786635212823"
-                    Point3="4,24.786635212823" />
-                  <mssgle:LineSegment
-                    End="255.435717019623,24.786635212823" />
-                  <mssgle:CubicBezierSegment
-                    Point1="255.435717019623,24.786635212823"
-                    Point2="259.435717019623,24.786635212823"
-                    Point3="259.435717019623,28.786635212823" />
-                  <mssgle:LineSegment
-                    End="259.435717019623,53.7624222589658" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <NodeLayout
           Size="172,41.6"
           Id="Package\Seq-dimVentes\TST_FOURNISSEUR"
@@ -3196,31 +3084,143 @@ FROM  gs_ventes</property>
           Id="Package\Seq-dimVentes"
           TopLeft="446.094442668133,382.300658756932" />
         <EdgeLayout
+          Id="Package.PrecedenceConstraints[Contrainte]"
+          TopLeft="649.515878091053,181.817647965062">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="74.2142929641592,0"
+              Start="0,0"
+              End="66.7142929641592,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="66.7142929641592,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Contrainte 1]"
+          TopLeft="496.115878091053,298.670589125445">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-263.811114110266,50.5500039654618"
+              Start="0,0"
+              End="-263.811114110266,43.0500039654618">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.278209741689" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.278209741689"
+                    Point2="0,17.278209741689"
+                    Point3="-4,17.278209741689" />
+                  <mssgle:LineSegment
+                    End="-259.811114110266,17.278209741689" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-259.811114110266,17.278209741689"
+                    Point2="-263.811114110266,17.278209741689"
+                    Point3="-263.811114110266,21.278209741689" />
+                  <mssgle:LineSegment
+                    End="-263.811114110266,43.0500039654618" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Contrainte 2]"
+          TopLeft="442.315878091053,180.462092287959">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-107.4079392584,0"
+              Start="0,0"
+              End="-99.9079392583999,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-99.9079392583999,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Contrainte 3]"
+          TopLeft="595.715878091053,298.670589125445">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="242.835717019623,61.2624222589658"
+              Start="0,0"
+              End="242.835717019623,53.7624222589658">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.9397605942336" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.9397605942336"
+                    Point2="0,20.9397605942336"
+                    Point3="4,20.9397605942336" />
+                  <mssgle:LineSegment
+                    End="238.835717019623,20.9397605942336" />
+                  <mssgle:CubicBezierSegment
+                    Point1="238.835717019623,20.9397605942336"
+                    Point2="242.835717019623,20.9397605942336"
+                    Point3="242.835717019623,24.9397605942336" />
+                  <mssgle:LineSegment
+                    End="242.835717019623,53.7624222589658" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
           Id="Package.PrecedenceConstraints[Contrainte 4]"
           TopLeft="545.915878091053,298.670589125445">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="10.5785645770803,83.6300696314871"
+              EndConnector="10.5785645770801,83.6300696314869"
               Start="0,0"
-              End="10.5785645770803,76.1300696314871">
+              End="10.5785645770801,76.1300696314869">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,37.8150348157436" />
+                    End="0,37.8150348157434" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,37.8150348157436"
-                    Point2="0,41.8150348157436"
-                    Point3="4,41.8150348157436" />
+                    Point1="0,37.8150348157434"
+                    Point2="0,41.8150348157434"
+                    Point3="4,41.8150348157434" />
                   <mssgle:LineSegment
-                    End="6.57856457708033,41.8150348157436" />
+                    End="6.5785645770801,41.8150348157434" />
                   <mssgle:CubicBezierSegment
-                    Point1="6.57856457708033,41.8150348157436"
-                    Point2="10.5785645770803,41.8150348157436"
-                    Point3="10.5785645770803,45.8150348157436" />
+                    Point1="6.5785645770801,41.8150348157434"
+                    Point2="10.5785645770801,41.8150348157434"
+                    Point3="10.5785645770801,45.8150348157434" />
                   <mssgle:LineSegment
-                    End="10.5785645770803,76.1300696314871" />
+                    End="10.5785645770801,76.1300696314869" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3233,20 +3233,20 @@ FROM  gs_ventes</property>
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\Conteneur de séquences\Tâche de copie de fichier CSV">
+    design-time-name="Package\Seq_initial\Tâche de copie de fichier CSV">
     <LayoutInfo>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="178.4,41.6"
-          Id="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Source du fichier plat"
+          Id="Package\Seq_initial\Tâche de copie de fichier CSV\Source du fichier plat"
           TopLeft="182,86" />
         <NodeLayout
           Size="178.4,41.6"
-          Id="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET"
+          Id="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET"
           TopLeft="175,204" />
         <EdgeLayout
-          Id="Package\Conteneur de séquences\Tâche de copie de fichier CSV.Paths[Sortie de source de fichier plat]"
+          Id="Package\Seq_initial\Tâche de copie de fichier CSV.Paths[Sortie de source de fichier plat]"
           TopLeft="267.7,127.6">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -3273,7 +3273,7 @@ FROM  gs_ventes</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Conteneur de séquences\Tâche de copie de fichier CSV\Destination ADO NET">
+    design-time-name="Package\Seq_initial\Tâche de copie de fichier CSV\Destination ADO NET">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
